@@ -19,3 +19,9 @@ const inProgressSymbols = function (word) {
 
 inProgressSymbols(word);
 
+guessButton.addEventListener("click", function(e) {
+    e.preventDefault();
+    let guess = letter.value;
+    console.log(guess);
+    letter.value = "";
+});
