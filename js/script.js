@@ -7,6 +7,7 @@ const remainingSpan = document.querySelector(".remaining span");
 const message = document.querySelector(".message");
 const playAgainButton = document.querySelector(".play-again");
 const word = "magnolia";
+const guessedLettersArray = [];
 
 // Function to display circle symbols for letter spaces
 const inProgressSymbols = function (word) {
@@ -24,7 +25,13 @@ inProgressSymbols(word);
 guessButton.addEventListener("click", function(e) {
     e.preventDefault();
     let guess = letter.value;
-    checkInput(guess);
+    message.innerText = "";
+    let validInput = checkInput(guess);
+    //console.log(validInput);
+    if (validInput != undefined) {
+        makeGuess(validInput);
+    }
+
     letter.value = "";
 });
 
@@ -38,5 +45,17 @@ const checkInput = function(letter) {
     } else if (!letter.match(acceptedLetter)) {
         message.innerText = "Please enter a letter";
     } else return letter;
+}
+
+//Function to capture input 
+const makeGuess = function(letter) {
+    let ucLetter = letter.toUpperCase();
+    //console.log(ucLetter);
+    if (guessedLettersArray.includes(ucLetter)) {
+        message.innerText = `You already guessed the letter ${ucLetter}!`;
+    } else {
+        guessedLettersArray.push(ucLetter);
+        console.log(guessedLettersArray);
+    }
 }
 
