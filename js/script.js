@@ -27,11 +27,9 @@ guessButton.addEventListener("click", function(e) {
     let guess = letter.value;
     message.innerText = "";
     let validInput = checkInput(guess);
-    //console.log(validInput);
     if (validInput != undefined) {
         makeGuess(validInput);
     }
-
     letter.value = "";
 });
 
@@ -56,6 +54,16 @@ const makeGuess = function(letter) {
     } else {
         guessedLettersArray.push(ucLetter);
         console.log(guessedLettersArray);
+        showGuessedLetters();
     }
 }
 
+// Function to show the guessed letters on the page
+const showGuessedLetters = function() {
+    guessedLetters.innerHTML = "";
+    guessedLettersArray.forEach(function(letter) {
+        let li = document.createElement("li");
+        li.innerText = letter;
+        guessedLetters.append(li);
+    });
+}
