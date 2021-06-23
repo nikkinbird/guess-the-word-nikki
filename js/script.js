@@ -53,8 +53,9 @@ const makeGuess = function(letter) {
         message.innerText = `You already guessed the letter ${ucLetter}!`;
     } else {
         guessedLettersArray.push(ucLetter);
-        console.log(guessedLettersArray);
+        //console.log(guessedLettersArray);
         showGuessedLetters();
+        updateWord(guessedLettersArray);
     }
 }
 
@@ -67,3 +68,19 @@ const showGuessedLetters = function() {
         guessedLetters.append(li);
     });
 }
+
+// Function to update the word in progress
+const updateWord = function(guessedLettersArray) {
+    const wordUpper = word.toUpperCase();
+    const wordArray = wordUpper.split("");
+    //console.log(wordArray);
+    const wordInProgArray = [];
+    wordArray.forEach(function(letter){
+        if (guessedLettersArray.includes(letter)) {
+            wordInProgArray.push(letter);
+        } else wordInProgArray.push("●");
+        wordInProgress.innerText = wordInProgArray.join("");
+    });
+         
+}
+
