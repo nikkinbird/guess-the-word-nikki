@@ -78,9 +78,24 @@ const updateWord = function(guessedLettersArray) {
     wordArray.forEach(function(letter){
         if (guessedLettersArray.includes(letter)) {
             wordInProgArray.push(letter);
-        } else wordInProgArray.push("●");
-        wordInProgress.innerText = wordInProgArray.join("");
+        } else {
+            wordInProgArray.push("●");
+        }
     });
-         
+    wordInProgress.innerText = wordInProgArray.join("");
+    verifyWin(wordInProgArray);
 }
+
+// Function to check and verify if player won
+const verifyWin = function(array) {
+    const checkWord = array.join("");
+    const wordUpper = word.toUpperCase();
+    if (checkWord === wordUpper) {
+        message.classList.add("win");
+        message.innerHTML = '<p class="highlight">You guessed correct the word! Congrats!</p>';
+    } else console.log("womp womp");
+}
+
+
+
 
