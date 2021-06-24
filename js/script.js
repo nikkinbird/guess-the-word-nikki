@@ -93,7 +93,7 @@ const verifyWin = function(array) {
     if (checkWord === wordUpper) {
         message.classList.add("win");
         message.innerHTML = '<p class="highlight">You guessed correct the word! Congrats!</p>';
-    } else console.log("womp womp");
+    } // else console.log("womp womp");
 }
 
 
