@@ -7,8 +7,8 @@ const remainingSpan = document.querySelector(".remaining span");
 const message = document.querySelector(".message");
 const playAgainButton = document.querySelector(".play-again");
 let word = "";
-const guessedLettersArray = [];
-let remainingGuesses = 8;
+let guessedLettersArray = [];
+let remainingGuesses = 10;
 
 // Function to get a random word from txt file
 const getWord = async function() {
@@ -112,7 +112,7 @@ const trackGuesses = function(letter) {
     if (remainingGuesses === 0) {
         message.innerHTML = `Sorry, you're all out of guesses.<br> The word was ${word.toUpperCase()}.`;
         startOver();
-    } else remaining.innerHTML = `<p>You have <span>${remainingGuesses}</span> guesses left</p>`;
+    } else remainingSpan.innerText = `${remainingGuesses} guesses`;
 }
 
 // Function to check and verify if player won
@@ -133,4 +133,15 @@ const startOver = function() {
     playAgainButton.classList.remove("hide");
 }
 
-
+playAgainButton.addEventListener("click", function() {
+    remainingGuesses = 10;
+    guessedLettersArray = [];
+    guessedLetters.innerText = "";
+    message.innerText = "";
+    remainingSpan.innerText = `10 guesses`;
+    guessButton.classList.remove("hide");
+    remaining.classList.remove("hide");
+    guessedLetters.classList.remove("hide");
+    playAgainButton.classList.add("hide");
+    getWord();
+})
